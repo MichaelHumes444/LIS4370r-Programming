@@ -1,0 +1,10 @@
+library(ggplot2)
+Name <- c("Jeb", "Donald", "Ted", "Marco", "Carly", "Hillary", "Bernie")
+ABCresults <- c(4, 62, 51, 21, 2, 14, 15)
+CBSresults <- c(12, 75, 43, 19, 1, 21, 19) 
+ABC_df <- data.frame(candidate = Name, result = ABCresults, network = "ABC")
+CBS_df <- data.frame(candidate = Name, result = CBSresults, network = "CBS")
+df <- rbind(ABC_df, CBS_df)
+df
+politicalPlot <- ggplot(df, aes(x=candidate, y=result, fill=network)) + geom_bar(stat = "identity", position = "dodge")
+politicalPlot
