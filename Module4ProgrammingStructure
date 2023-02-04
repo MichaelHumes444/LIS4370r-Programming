@@ -1,0 +1,30 @@
+#Michael Humes
+#2/6/2023
+#LIS4370
+
+#Variables in vector format
+Freq <- c(0.6, 0.3, 0.4, 0.4, 0.2, 0.6, 0.3, 0.4, 0.9, 0.2)
+Bloodp <- c(103, 87, 32, 42, 59, 109, 78, 205, 135, 176)
+first <- c(1, 1, 1, 1, 0, 0, 0, 0, NA, 1)
+second <- c(0, 0, 1, 1, 0, 0, 1, 1, 1, 1)
+finaldecision <- c(0, 1, 0, 1, 0, 1, 0, 1, 1, 1)
+
+#Create data frame with the data
+medical_df <-  data.frame(Freq, Bloodp, first, second, finaldecision)
+medical_df
+medical_df <- na.omit(medical_df)
+medical_df
+
+#Mean Calculation of finaldecision
+mean(finaldecision)
+
+#Side by side histogram and boxplot graphs
+medical_melted <- melt(medical_df)
+ggplot(medical_melted, aes(value, fill = variable)) + geom_histogram(bins=10, position = "dodge")
+medical_df$first <- ifelse(medical_df$first == 1, "bad","good")
+medical_df$second <- ifelse(medical_df$second == 1, "bad","good")
+medical_df$finaldecision <- ifelse(medical_df$finaldecision == 1, "high","low")
+boxplot(medical_df$Bloodp~medical_df$Freq, col='steelblue', main='Blood Pressure by Frequency', xlab = 'Frequency', ylab = 'Blood Pressure')
+boxplot(medical_df$Bloodp~medical_df$first, col='steelblue', main='First Assessment by Blood Pressure', xlab = 'First Assessment', ylab = 'Blood Pressure')
+boxplot(medical_df$Bloodp~medical_df$second, col='steelblue', main='Second Assessment by Blood Pressure', xlab = 'Second Assessment', ylab = 'Blood Pressure')
+boxplot(medical_df$Bloodp~medical_df$finaldecision, col='steelblue', main='Final Decision by Blood Pressure', xlab = 'Final Decision', ylab = 'Blood Pressure')
