@@ -19,6 +19,9 @@ medical_df
 mean(finaldecision)
 
 #Side by side histogram and boxplot graphs
+hist(medical_df$first)
+hist(medical_df$second)
+hist(medical_df$finaldecision)
 medical_melted <- melt(medical_df)
 ggplot(medical_melted, aes(value, fill = variable)) + geom_histogram(bins=10, position = "dodge")
 medical_df$first <- ifelse(medical_df$first == 1, "bad","good")
