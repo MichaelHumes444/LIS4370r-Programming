@@ -1,0 +1,16 @@
+library(pryr)
+library(ISLR)
+library(boot)
+library(data.table)
+library(plyr)
+
+
+Student <- read.csv("Assignment 6 Dataset.txt", header = TRUE)
+
+StudentAverage = ddply(Student, "Sex", summarize, Grade.Average = mean(Grade))
+
+write.table(StudentAverage, "StudentAverage")
+
+i_students <- subset(Student, grepl("i", Student$Name, ignore.case = TRUE))
+
+write.csv(i_students, "i_students")
