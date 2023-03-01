@@ -10,7 +10,7 @@ library(plyr)
 
 Student <- read.csv("Assignment 6 Dataset.txt", header = TRUE)
 
-StudentAverage = ddply(Student, "Sex", summarize, Grade.Average = mean(Grade))
+StudentAverage = ddply(Student, "Sex", transform, Grade.Average = mean(Grade))
 
 write.table(StudentAverage, "StudentAverage")
 
